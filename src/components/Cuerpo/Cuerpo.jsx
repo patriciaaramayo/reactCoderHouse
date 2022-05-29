@@ -4,7 +4,6 @@ import logo from '../../logo.svg'
 export default function Cuerpo() {
   return (
     <>
-      {/* <button className="btn btn-outline-primary">Titulo</button> */}
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

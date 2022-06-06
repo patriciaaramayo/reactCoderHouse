@@ -1,12 +1,19 @@
 import React from 'react'
+import ItemCount from '../ItemCount/ItemCount'
 
 function ItemListContainer({ saludo }) {
+
+    function onAdd(cantidad){
+        console.log(cantidad);
+    }
+    
     return (
         <div>
             <header className="App-header">            
-                <p>
+               <p>
                     {saludo}
-                </p>
+                </p> 
+                <ItemCount stock={5} initial={1} onAdd={onAdd} /> 
             </header>
         </div>
     )

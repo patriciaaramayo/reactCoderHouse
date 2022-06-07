@@ -29,7 +29,7 @@ function ItemCount({ stock, initial, onAdd }) {
                         Pensamientos
                     </Card.Text>
                     <Button variant="outline-primary" className="counter" onClick={restar}>-</Button>
-                    <input type="text" className="btn counter counter_number" defaultValue={count} />
+                    <p  className="counter counter_number">{count} </p>
                     <Button variant="outline-primary" className="counter" onClick={sumar}>+</Button>
                     <Button variant="primary" onClick={() => onAdd(count)}>Agregar al carrito</Button>
                 </Card.Body>

@@ -1,9 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import { Card } from 'react-bootstrap'
 import "./ItemCount.css"
-
 
 function ItemCount({ stock, initial, onAdd }) {
     const [count, setCount] = useState(initial)
@@ -21,19 +19,10 @@ function ItemCount({ stock, initial, onAdd }) {
 
     return (
         <>
-            <Card style={{ width: '18rem' }} className="text-center">
-                <Card.Img variant="top" src="https://i.pinimg.com/originals/b1/ae/90/b1ae90a924eaa010c51fa934cad0940e.jpg" />
-                <Card.Body>
-                    <Card.Title>Anuales</Card.Title>
-                    <Card.Text>
-                        Pensamientos
-                    </Card.Text>
-                    <Button variant="outline-primary" className="counter" onClick={restar}>-</Button>
-                    <p  className="counter counter_number">{count} </p>
-                    <Button variant="outline-primary" className="counter" onClick={sumar}>+</Button>
-                    <Button variant="primary" onClick={() => onAdd(count)}>Agregar al carrito</Button>
-                </Card.Body>
-            </Card>
+            <Button variant="outline-primary" className="counter" onClick={restar}>-</Button>
+            <p className="counter counter_number">{count} </p>
+            <Button variant="outline-primary" className="counter" onClick={sumar}>+</Button>
+            <Button variant="primary" className="btn_agregarCarrito" onClick={() => onAdd(count)}>Agregar al carrito</Button>
         </>
     )
 }

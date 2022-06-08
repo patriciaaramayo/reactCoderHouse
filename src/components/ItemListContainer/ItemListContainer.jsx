@@ -1,20 +1,29 @@
 import React from 'react'
-import ItemCount from '../ItemCount/ItemCount'
+import { useEffect, useState } from "react";
+import { getFetch } from '../../helpers/getFetch';
+import ItemList from '../ItemList/ItemList';
 
 function ItemListContainer({ saludo }) {
+    const [productos, setProductos] = useState([])
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        getFetch()
+            .then((resp) => {
+                setProductos(resp)
+            })
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
+    }, [])
 
-    function onAdd(cantidad){
-        console.log(cantidad);
-    }
-    
+    console.log(productos)
+
     return (
-        <div>
-            <header className="App-header">            
-               <p>
-                    {saludo}
-                </p> 
-                <ItemCount stock={5} initial={1} onAdd={onAdd} /> 
-            </header>
+        <div className="text-center">
+            {loading ?
+                <h1>Cargando...</h1>
+                :
+                <ItemList productos={productos} />
+            }
         </div>
     )
 }

@@ -1,0 +1,10 @@
+.lista_productos {
+    background-color: #f6d1de;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #0000018c;
+}

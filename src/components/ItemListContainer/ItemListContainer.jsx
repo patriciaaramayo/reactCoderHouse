@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { getFetch } from '../../helpers/getFetch';
+import { getFetch, getFetchCategoria } from '../../helpers/getFetch';
 import ItemList from '../ItemList/ItemList';
 
 function ItemListContainer({ saludo }) {
@@ -9,12 +9,11 @@ function ItemListContainer({ saludo }) {
     const [loading, setLoading] = useState(true)
     const { categoriaId } = useParams()
 
-
     useEffect(() => {
         if (categoriaId) {
-            getFetch()
+            getFetchCategoria(categoriaId)
                 .then((resp) => {
-                    setProductos(resp.filter(producto => producto.categoria === categoriaId))
+                    setProductos(resp)
                     setLoading(false)
                 })
                 .catch(err => console.log(err))

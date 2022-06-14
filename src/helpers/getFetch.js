@@ -29,6 +29,16 @@ export const getFetch = (id) => {
     })
 }
 
+export const getFetchCategoria = (categoriaId) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            if (categoriaId) {
+                resolve(productos.filter(producto => producto.categoria === categoriaId))
+            } 
+        }, 2000)
+    })
+}
+
 let producto = { id: '4', nombre: 'Dalia', categoria: 'BulbosPrimavera', descripcion: 'Rosadas', descripcionLarga: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet condimentum mi. Vestibulum pharetra facilisis viverra. Mauris lacinia, lectus eget sollicitudin efficitur, nibh erat ultricies nisl, ut pellentesque neque", precio: '500', stock: '20', foto: 'https://www.lysaflores.com/blog/wp-content/uploads/2016/11/Dalia.jpg' }
 
 export const getFetchOne = () => {

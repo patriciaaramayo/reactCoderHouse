@@ -17,12 +17,20 @@ function ItemCount({ stock, initial, onAdd }) {
         }
     }
 
+    const agregar = () => {
+        onAdd(count)
+    }
+
     return (
         <>
-            <Button variant="outline-primary" className="counter" onClick={restar}>-</Button>
-            <p className="counter counter_number">{count} </p>
-            <Button variant="outline-primary" className="counter" onClick={sumar}>+</Button>
-            <Button variant="primary" className="btn_agregarCarrito" onClick={() => onAdd(count)}>Agregar al carrito</Button>
+            <div className='contenedor_counter'>
+                <Button variant="outline-primary" className="counter" onClick={restar}>-</Button>
+                <p className="counter counter_number">{count} </p>
+                <Button variant="outline-primary" className="counter" onClick={sumar}>+</Button>
+            </div>
+            <div className='contenedor_btnCarrito'>
+                <Button variant="primary" className="btn_agregarCarrito" onClick={agregar}>Agregar al carrito</Button>
+            </div>
         </>
     )
 }

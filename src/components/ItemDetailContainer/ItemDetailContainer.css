@@ -1,0 +1,9 @@
+.detailContainer {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-items: center;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

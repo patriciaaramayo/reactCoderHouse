@@ -5,33 +5,40 @@ import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Img from '../../imagenes/flor.png'
 import CartWidget from '../CartWidget/CartWidget'
+import { NavLink } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function NavBar() {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">
-                    <img src={Img} width="20" height="20" className="d-inline-block" alt="imagen" />{' '} Semilleria
-                </Navbar.Brand>
+                <Link to={`/`} style={{ textDecoration: 'none' }}>
+                    <Navbar.Brand>
+                        <img src={Img} width="20" height="20" className="d-inline-block" alt="imagen" />
+                        {' '} Semilleria
+                    </Navbar.Brand>
+                </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="basic-navbar-nav justify-content-md-center">
                     <Nav>
                         <NavDropdown title="Florales" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/1.1">Anuales y Bianuales</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/1.2">Perennes</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/1.3">Siembra de Oto&ntilde;o</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/1.4">Siembra de Primavera</NavDropdown.Item>
+                            <NavDropdown.Item href={`/categoria/FloresOtonio`}>Oto&ntilde;o</NavDropdown.Item>
+                            <NavDropdown.Item href={`/categoria/FloresInvierno`}>Invierno</NavDropdown.Item>
+                            <NavDropdown.Item href={`/categoria/FloresPrimavera`}>Primavera</NavDropdown.Item>
+                            <NavDropdown.Item href={`/categoria/FloresVerano`}>Verano</NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Bulbos" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/2.1">Oto&ntilde;o/Invierno</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/2.2">Primavera/Verano</NavDropdown.Item>
+                            <NavDropdown.Item href={`/categoria/BulbosPrimavera`}>Primavera</NavDropdown.Item>
+                            <NavDropdown.Item href={`/categoria/BulbosVerano`}>Verano</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#home">Hort&iacute;colas</Nav.Link>
-                        <Nav.Link href="#link">C&eacute;sped</Nav.Link>
+                        {/* <Nav.Link to='/' className={({isActive})=>isActive? 'clase1' : 'clase2'}>Hort&iacute;colas</Nav.Link> */}
+                        <Nav.Link href='/categoria/Cesped'>Cesped</Nav.Link>
+                        <Nav.Link href='/categoria/Huerta'>Huerta</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-                <CartWidget/>
+                <NavLink>
+                </NavLink>
+                <CartWidget />
             </Container>
         </Navbar>
     )

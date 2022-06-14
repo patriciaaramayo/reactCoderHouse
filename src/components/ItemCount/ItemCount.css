@@ -3,7 +3,7 @@
 }
 
 .counter_number {
-
+  text-align: center;
   width: 50px;
   display: inline-block;
   display: inline-block;
@@ -12,5 +12,13 @@
 }
 
 .btn_agregarCarrito {
+  margin-left: 0px;
+}
+
+.contenedor_counter {
   margin-left: 10px;
+}
+
+.contenedor_btnCarrito{
+  margin-bottom: 10px;
 }

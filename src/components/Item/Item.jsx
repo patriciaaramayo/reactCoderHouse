@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function Item({ producto }) {
 
     return (
-        <>       
+        <>
             <div>
                 <CardGroup className="col-md-6 text-center container" style={{ width: '27rem', padding: '10px' }}>
                     <Card>
@@ -14,7 +14,7 @@ function Item({ producto }) {
                         <Card.Body>
                             <Card.Title className='text-uppercase'>
                                 {producto.nombre}
-                                </Card.Title>
+                            </Card.Title>
                             <Card.Text>{producto.descripcion} </Card.Text>
                             <Card.Text>${producto.precio} </Card.Text>
                             <Link to={`/item/${producto.id}`}>

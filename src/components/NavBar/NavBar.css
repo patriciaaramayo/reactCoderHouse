@@ -1,0 +1,15 @@
+.menu {
+    text-decoration: none;
+    color: #000000b3;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem; 
+    display: block;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+}
+
+.dropdown {
+    text-transform: uppercase;
+}
+
+

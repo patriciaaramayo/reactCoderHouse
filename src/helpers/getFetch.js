@@ -9,14 +9,6 @@ let productos = [
     { id: '8', nombre: 'Violeta de los Alpes', categoria: 'FloresInvierno', descripcion: 'Rosadas', descripcionLarga: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet condimentum mi. Vestibulum pharetra facilisis viverra. Mauris lacinia, lectus eget sollicitudin efficitur, nibh erat ultricies nisl, ut pellentesque neque", precio: '500', stock: '4', foto: 'https://jaime-jardiner.ouest-france.fr/wp-content/uploads/2015/03/Cyclamen-Wikipedia-1500.jpg' }
 ]
 
-// export const getFetch = () => {
-//     return new Promise((resolve) => {
-//         setTimeout(() => {
-//             resolve(productos)
-//         }, 2000)
-//     })
-// }
-
 export const getFetch = (id) => {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -34,18 +26,7 @@ export const getFetchCategoria = (categoriaId) => {
         setTimeout(() => {
             if (categoriaId) {
                 resolve(productos.filter(producto => producto.categoria === categoriaId))
-            } 
-        }, 2000)
-    })
-}
-
-let producto = { id: '4', nombre: 'Dalia', categoria: 'BulbosPrimavera', descripcion: 'Rosadas', descripcionLarga: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet condimentum mi. Vestibulum pharetra facilisis viverra. Mauris lacinia, lectus eget sollicitudin efficitur, nibh erat ultricies nisl, ut pellentesque neque", precio: '500', stock: '20', foto: 'https://www.lysaflores.com/blog/wp-content/uploads/2016/11/Dalia.jpg' }
-
-export const getFetchOne = () => {
-
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(producto)
+            }
         }, 2000)
     })
 }

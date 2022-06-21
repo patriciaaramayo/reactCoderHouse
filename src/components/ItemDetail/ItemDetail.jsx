@@ -1,12 +1,19 @@
 import React from 'react'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useCartContext } from '../../context/CartContext';
 import ItemCount from '../ItemCount/ItemCount'
+import "./ItemDetail.css"
 
 function ItemDetail({ producto }) {
+  const { cart, addToCart } = useCartContext()
+  const [cantidad, setCantidad] = useState()
 
   function onAdd(cantidad) {
-    console.log(cantidad);
+    setCantidad(cantidad);
+    addToCart({ producto, cantidad })
   }
-
+  console.log('cart desde itemDetail:', cart)
   return (
     <>
       <div className="container-fluid mt-3">
@@ -34,7 +41,20 @@ function ItemDetail({ producto }) {
                   <del className="small me-2">${(producto.precio * 20 / 100) + parseInt(producto.precio)}</del>
                   <span className="rounded p-1 bg-warning  me-2 small">-20%</span>
                 </div>
-                <ItemCount stock={producto.stock} initial={1} onAdd={onAdd} />
+                {
+                  cantidad
+                    ?
+                    <div>
+                      <Link to='/cart'>
+                        <button className="btn btn-success btn-space">Ir al carrito</button>
+                      </Link>
+                      <Link to='/'>
+                        <button className="btn btn-success btn-space">Seguir comprando</button>
+                      </Link>
+                    </div>
+                    :
+                    <ItemCount stock={producto.stock} initial={1} onAdd={onAdd} />
+                }
                 <div>
                   <p className="mb-2 small">{producto.descripcionLarga}</p>
                 </div>

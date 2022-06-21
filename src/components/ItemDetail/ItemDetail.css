@@ -2,6 +2,10 @@
     text-align: left;
 }
 
-.txt_nombre{
+.txt_nombre {
     font-size: 1.25rem;
+}
+
+.btn-space {
+    margin-right: 5px;
 }

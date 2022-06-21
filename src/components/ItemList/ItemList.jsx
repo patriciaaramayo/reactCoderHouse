@@ -4,9 +4,13 @@ import Item from '../Item/Item';
 function ItemList({ productos }) {
     return (
         <>
-            {productos.map((producto) =>
-                <Item key={producto.id} producto={producto} />
-            )
+            {productos.length > 0 ?
+                productos.map((producto) =>
+                    <Item key={producto.id} producto={producto} />
+                )
+
+                : "No hay productos"
+
             }
         </>
     )

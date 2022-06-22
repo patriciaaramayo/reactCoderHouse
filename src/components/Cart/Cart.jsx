@@ -3,10 +3,11 @@ import { useCartContext } from '../../context/CartContext'
 import CartItem from '../CartItem/CartItem'
 import { Button } from 'react-bootstrap'
 import "./Cart.css"
+import { Link } from 'react-router-dom'
 
 function Cart() {
 
-  const { cart, EmptyCart, PriceTotal } = useCartContext()
+  const { cart, EmptyCart, PriceTotal, IconCart } = useCartContext()
 
   return (
     <>
@@ -14,7 +15,10 @@ function Cart() {
         {
           (cart.length == 0) ?
             <div className="text-center" >
-              <h2>Carrito vacio</h2>
+              <h2>El carrito esta vacio</h2>
+              <Link to='/'>
+                <button className="btn btn-success btn-space">Ver Productos disponibles</button>
+              </Link>
             </div>
             :
             <div>
@@ -36,7 +40,9 @@ function Cart() {
                 </div>
                 <div className="my-3"></div>
                 <div className="row">
-                  < div className="col-4"></div>
+                  <div className="col-4">
+                  <span>La cant. total del carrito es {IconCart()} items.</span>
+                  </div>
                   <div className="col-5"><span>El precio total es: ${PriceTotal()}</span>
                   </div>
                   <div className="col-2 borrarCarrito">  <Button variant="danger" onClick={EmptyCart}>Borrar carrito</Button></div>
@@ -45,7 +51,6 @@ function Cart() {
             </div>
         }
       </div>
-      {/* <p>la cant total del carrito es {iconCart}</p> */}
     </>
   )
 }

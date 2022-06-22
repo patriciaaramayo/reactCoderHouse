@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
 import { getFetch, getFetchCategoria } from '../../helpers/getFetch';
 import ItemList from '../ItemList/ItemList';
+import Loader from '../Loader/Loader';
 
 function ItemListContainer({ saludo }) {
     const [productos, setProductos] = useState([])
@@ -27,13 +28,10 @@ function ItemListContainer({ saludo }) {
     return (
         <div className="text-center">
             {loading ?
-                <div className="text-center" >
-                    <h1>Cargando...</h1>
-                </div>
+                <Loader />
                 :
                 <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
                     <ItemList productos={productos} />
-                    {console.log(item)}
                 </div>
             }
         </div>

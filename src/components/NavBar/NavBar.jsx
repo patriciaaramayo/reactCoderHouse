@@ -43,15 +43,11 @@ function NavBar() {
                             <NavDropdown.Item>
                                 <NavLink to="/categoria/BulbosVerano" className="menu">Verano</NavLink>
                             </NavDropdown.Item>
-
-
-
                         </NavDropdown>
                         <NavLink to="/categoria/Cesped" className="menu">Cesped</NavLink>
                         <NavLink to="/categoria/Huerta" className="menu">Huerta</NavLink>
                     </Nav>
                 </Navbar.Collapse>
-
                 <Link to={`/cart`} style={{ textDecoration: 'none' }}>
                     <CartWidget />
                 </Link>

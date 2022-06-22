@@ -13,7 +13,7 @@ function ItemDetail({ producto }) {
     setCantidad(cantidad);
     addToCart({ producto, cantidad })
   }
-  console.log('cart desde itemDetail:', cart)
+
   return (
     <>
       <div className="container-fluid mt-3">
@@ -46,7 +46,7 @@ function ItemDetail({ producto }) {
                     ?
                     <div>
                       <Link to='/cart'>
-                        <button className="btn btn-success btn-space">Ir al carrito</button>
+                        <button className="btn btn-success btn-space">Terminar mi compra</button>
                       </Link>
                       <Link to='/'>
                         <button className="btn btn-success btn-space">Seguir comprando</button>

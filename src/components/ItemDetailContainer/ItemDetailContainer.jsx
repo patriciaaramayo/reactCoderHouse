@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getFetch } from '../../helpers/getFetch'
 import ItemDetail from '../ItemDetail/ItemDetail'
+import Loader from '../Loader/Loader'
 import "./ItemDetailContainer.css"
 
 function ItemDetailContainer() {
@@ -22,9 +23,7 @@ function ItemDetailContainer() {
   return (
     <div>
       {loading ?
-        <div className="text-center" >
-          <h1>Cargando...</h1>
-        </div>
+        <Loader />
         :
         <div className="detailContainer">
           <ItemDetail producto={producto} />

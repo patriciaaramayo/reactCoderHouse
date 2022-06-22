@@ -1,0 +1,18 @@
+.carrito {
+    border-radius: 50%;
+    background: #ab82ff;
+    color: #FFFFFF;
+    position: absolute;
+    right: 5px;
+    padding: 0px 5px;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+}
+
+.resumenCompra {
+    position: relative;
+    min-width: 60px;
+    text-align: center;
+}

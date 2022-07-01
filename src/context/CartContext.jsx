@@ -8,17 +8,20 @@ export const useCartContext = () => useContext(CartContext)
 
 export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState([])
+
     const addToCart = (item) => {
-        if (IsInCart(item.producto.id))
-            alert("El producto ya se encuentra en el carrito")
+        let carritoprevio = [...cart];
+        if (IsInCart(item.producto.id)) {
+            carritoprevio.find((i) => i.item.producto.id === item.producto.id).item.cantidad += item.cantidad;
+            setCart(carritoprevio);
+        }
         else {
-            setCart([  ...cart, { item}] )
-            alert("Se agrego el producto correctamente")
+            setCart([...cart, { item }])
         }
     }
 
     const IsInCart = (id) => {
-       return cart && cart.some((i) => i.item.producto.id === id)
+        return cart && cart.some((i) => i.item.producto.id === id)
     }
 
     const EmptyCart = () => {
@@ -27,15 +30,14 @@ export const CartContextProvider = ({ children }) => {
     const RemoveItem = (id) => {
         const items = cart.filter((product) => product.item.producto.id !== id)
         setCart(items)
-        return 
+        return
     }
     const PriceTotal = () => {
-       return cart.reduce((acum,i) => acum + i.item.cantidad * i.item.producto.precio, 0)
+        return cart.reduce((acum, i) => acum + i.item.cantidad * i.item.producto.precio, 0)
     }
 
-    //para el numero del carrito
-    const IconCart = () => { 
-      return cart.reduce((acum,i) => acum + i.item.cantidad, 0)
+    const IconCart = () => {
+        return cart.reduce((acum, i) => acum + i.item.cantidad, 0)
     }
 
     return (

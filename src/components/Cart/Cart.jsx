@@ -14,11 +14,15 @@ function Cart() {
       <div>
         {
           (cart.length == 0) ?
-            <div className="text-center" >
-              <h2>El carrito esta vacio</h2>
-              <Link to='/'>
-                <button className="btn btn-success btn-space">Ver Productos disponibles</button>
-              </Link>
+            <div className="text-center">
+              <div className='mensaje'>
+                <h4>El carrito esta vac&iacute;o</h4>
+              </div>
+              <div className='mensaje'>
+                <Link to='/'>
+                  <button className="btn btn-success btn-space">Ver Productos disponibles</button>
+                </Link>
+              </div>
             </div>
             :
             <div>
@@ -41,7 +45,7 @@ function Cart() {
                 <div className="my-3"></div>
                 <div className="row">
                   <div className="col-4">
-                  <span>La cant. total del carrito es {IconCart()} items.</span>
+                    <span>La cant. total del carrito es {IconCart()} items.</span>
                   </div>
                   <div className="col-5"><span>El precio total es: ${PriceTotal()}</span>
                   </div>

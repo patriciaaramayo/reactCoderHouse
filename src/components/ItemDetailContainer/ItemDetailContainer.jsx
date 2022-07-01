@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getFetch } from '../../helpers/getFetch'
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import ItemDetail from '../ItemDetail/ItemDetail'
 import Loader from '../Loader/Loader'
 import "./ItemDetailContainer.css"
@@ -11,15 +11,14 @@ function ItemDetailContainer() {
   const { itemId } = useParams()
 
   useEffect(() => {
-    getFetch(itemId)
-      .then((resp) => {
-        setProducto(resp)
-        setLoading(false)
-      })
+    const db = getFirestore()
+    const queryItem = doc(db, 'productos', itemId)
+    getDoc(queryItem)
+      .then(resp => setProducto({ id: resp.id, ...resp.data() }))
       .catch(err => console.log(err))
+      .finally(() => setLoading(false))
   }, [])
 
-  console.log(producto)
   return (
     <div>
       {loading ?
@@ -30,7 +29,6 @@ function ItemDetailContainer() {
         </div>
       }
     </div>
-
   )
 }
 

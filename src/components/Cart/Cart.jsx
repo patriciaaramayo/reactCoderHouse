@@ -3,17 +3,44 @@ import { useCartContext } from '../../context/CartContext'
 import CartItem from '../CartItem/CartItem'
 import { Button } from 'react-bootstrap'
 import "./Cart.css"
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import { addDoc, collection, doc, documentId, getDocs, getFirestore, query, updateDoc, where, writeBatch } from "firebase/firestore"
+import { useState } from 'react'
 
 function Cart() {
 
   const { cart, EmptyCart, PriceTotal, IconCart } = useCartContext()
+  const [id, setId] = useState(null)
+
+  async function generarOrden(e) {
+    e.preventDefault()
+    let orden = {}
+    orden.comprador = { name: 'Patricia', email: 'p@mail.com', phone: '1536587451' }
+    orden.total = PriceTotal()
+
+    orden.items = cart.map(cartItem => {
+      const id = cartItem.item.producto.id
+      const nombre = cartItem.item.producto.nombre
+      const precio = cartItem.item.producto.precio * cartItem.item.cantidad
+      return { id, nombre, precio }
+    })
+
+    console.log(orden)
+    const db = getFirestore()
+
+    const orderCollection = collection(db, 'ordenes')
+    addDoc(orderCollection, orden)
+      .then(resp => setId(resp.id))
+      .catch(err => console.log(err))
+      .finally(() => EmptyCart())
+  }
 
   return (
     <>
       <div>
+        {id && <label className={'alert alert-success'} >Su ID de orden es: {id}</label>}
         {
-          (cart.length == 0) ?
+          (cart.length === 0 && !id) ?
             <div className="text-center">
               <div className='mensaje'>
                 <h4>El carrito esta vac&iacute;o</h4>
@@ -49,7 +76,11 @@ function Cart() {
                   </div>
                   <div className="col-5"><span>El precio total es: ${PriceTotal()}</span>
                   </div>
-                  <div className="col-2 borrarCarrito">  <Button variant="danger" onClick={EmptyCart}>Borrar carrito</Button></div>
+                  <div className="col-3 borrarCarrito">  <Button variant="danger" onClick={EmptyCart}>Borrar carrito</Button>
+                    <NavLink to='/checkout'>
+                      <Button variant="success">Finalizar compra</Button>
+                    </NavLink>
+                  </div>
                 </div>
               </div>
             </div>

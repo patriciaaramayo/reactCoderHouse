@@ -13,21 +13,31 @@ function ItemListContainer({ saludo }) {
     useEffect(() => {
         const db = getFirestore()
 
-        if (categoriaId) {
-            const queryCollection = collection(db, 'productos')
-            const queryCollectionFilter = query(queryCollection, where('categoria', '==', categoriaId))
-            getDocs(queryCollectionFilter)
-                .then(data => setProductos(data.docs.map(item => ({ id: item.id, ...item.data() }))))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false))
-        }
-        else {
-            const queryCollection = collection(db, 'productos')
-            getDocs(queryCollection)
-                .then(data => setProductos(data.docs.map(item => ({ id: item.id, ...item.data() }))))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false))
-        }
+        const queryCollection = collection(db, 'productos')
+
+        const queryCollectionFilter = categoriaId 
+        ? query(queryCollection, where('categoria', '==', categoriaId))
+        : query(queryCollection);
+        getDocs(queryCollectionFilter)
+        .then(data => setProductos(data.docs.map(item => ({ id: item.id, ...item.data() }))))
+        .catch(err => console.log(err))
+        .finally(() => setLoading(false))
+
+        // if (categoriaId) {
+        //     const queryCollection = collection(db, 'productos')
+        //     const queryCollectionFilter = query(queryCollection, where('categoria', '==', categoriaId))
+        //     getDocs(queryCollectionFilter)
+        //         .then(data => setProductos(data.docs.map(item => ({ id: item.id, ...item.data() }))))
+        //         .catch(err => console.log(err))
+        //         .finally(() => setLoading(false))
+        // }
+        // else {
+        //     const queryCollection = collection(db, 'productos')
+        //     getDocs(queryCollection)
+        //         .then(data => setProductos(data.docs.map(item => ({ id: item.id, ...item.data() }))))
+        //         .catch(err => console.log(err))
+        //         .finally(() => setLoading(false))
+        // }
 
     }, [categoriaId])
 

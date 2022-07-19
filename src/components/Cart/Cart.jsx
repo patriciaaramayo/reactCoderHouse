@@ -48,7 +48,7 @@ function Cart() {
                 <div className="col-4">
                   <span>El precio total es: ${PriceTotal()}</span>
                 </div>
-                <div className="col-3 ">
+                <div className="col-4 ">
                   {" "}
                   <Button variant="danger" className="deleteCar" onClick={EmptyCart}>
                     Borrar carrito

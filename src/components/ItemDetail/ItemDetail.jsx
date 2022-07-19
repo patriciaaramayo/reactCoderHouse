@@ -24,7 +24,7 @@ function ItemDetail({ product }) {
             <img src={product.photo} className="img-fluid mb-3" alt="" />
           </Col>
           <Col>
-            <div className="col-md-7 mt-2">
+            <div className="col-md-8 mt-2">
               <h1 className="h4 d-inline me-2 text-uppercase">
                 {" "}
                 {product.name}

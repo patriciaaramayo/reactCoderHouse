@@ -2,39 +2,38 @@ import React from 'react'
 import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useCartContext } from '../../context/CartContext'
-import { addDoc, collection, doc, documentId, getDocs, getFirestore, query, updateDoc, where, writeBatch } from "firebase/firestore"
+import { addDoc, collection, getFirestore} from "firebase/firestore"
 import Loader from '../Loader/Loader'
 
-function Formulario() {
-    const { cart, EmptyCart, PriceTotal, IconCart } = useCartContext()
+function CheckoutForm() {
+    const { cart, EmptyCart, PriceTotal } = useCartContext()
     const [id, setId] = useState(null)
-    const [creandoOrden, setCreandoOrden] = useState(false)
+    const [creatingOrder, setCreatingOrder] = useState(false)
     const [dataForm, setDataForm] = useState({
-        nombre: '', email: '', telefono: ''
+        name: '', email: '', phone: ''
     })
 
-    async function generarOrden(e) {
+    async function generateOrder(e) {
         e.preventDefault()
-        setCreandoOrden(true)
-        let orden = {}
-        orden.buyer = dataForm
-        orden.total = PriceTotal()
-        orden.items = cart.map(cartItem => {
-            const id = cartItem.item.producto.id
-            const nombre = cartItem.item.producto.nombre
-            const precio = cartItem.item.producto.precio * cartItem.item.cantidad
-            return { id, nombre, precio }
+        setCreatingOrder(true)
+        let order = {}
+        order.buyer = dataForm
+        order.total = PriceTotal()
+        order.items = cart.map(cartItem => {
+            const id = cartItem.item.product.id
+            const name = cartItem.item.product.name
+            const price = cartItem.item.product.price * cartItem.item.quantity
+            return { id, name, price }
         })
 
-        console.log(orden)
         const db = getFirestore()
 
-        const orderCollection = collection(db, 'ordenes')
-        addDoc(orderCollection, orden)
+        const orderCollection = collection(db, 'orders')
+        addDoc(orderCollection, order)
             .then(resp => setId(resp.id))
             .catch(err => console.log(err))
             .finally(() => {
-                setCreandoOrden(false)
+                setCreatingOrder(false)
                 EmptyCart()
             })
     }
@@ -49,7 +48,7 @@ function Formulario() {
     return (
         <>
             {
-                creandoOrden ?
+                creatingOrder ?
                     <div className="text-center">
                         <h1>Procesando su orden...</h1>
                         <Loader />
@@ -63,7 +62,7 @@ function Formulario() {
                         :
                         <div className="container py-5">
                             <h2>Completar Formulario</h2>
-                            <Form onSubmit={generarOrden}>
+                            <Form onSubmit={generateOrder}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Nombre</Form.Label>
                                     <Form.Control
@@ -71,8 +70,8 @@ function Formulario() {
                                         placeholder="Nombre"
                                         onChange={handleChange}
                                         required={true}
-                                        id="nombre"
-                                        name='nombre'
+                                        id="name"
+                                        name='name'
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3">
@@ -82,8 +81,8 @@ function Formulario() {
                                         placeholder="Telefono"
                                         onChange={handleChange}
                                         required={true}
-                                        id="telefono"
-                                        name='telefono'
+                                        id="phone"
+                                        name='phone'
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3">
@@ -108,4 +107,4 @@ function Formulario() {
     )
 }
 
-export default Formulario
+export default CheckoutForm

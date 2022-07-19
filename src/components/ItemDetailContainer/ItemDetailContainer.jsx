@@ -6,7 +6,7 @@ import Loader from '../Loader/Loader'
 import "./ItemDetailContainer.css"
 
 function ItemDetailContainer() {
-  const [producto, setProducto] = useState({})
+  const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(true)
   const { itemId } = useParams()
 
@@ -14,7 +14,7 @@ function ItemDetailContainer() {
     const db = getFirestore()
     const queryItem = doc(db, 'productos', itemId)
     getDoc(queryItem)
-      .then(resp => setProducto({ id: resp.id, ...resp.data() }))
+      .then(resp => setProduct({ id: resp.id, ...resp.data() }))
       .catch(err => console.log(err))
       .finally(() => setLoading(false))
   }, [])
@@ -25,7 +25,7 @@ function ItemDetailContainer() {
         <Loader />
         :
         <div className="detailContainer">
-          <ItemDetail producto={producto} />
+          <ItemDetail product={product} />
         </div>
       }
     </div>

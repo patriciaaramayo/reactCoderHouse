@@ -1,71 +1,84 @@
-import React from 'react'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useCartContext } from '../../context/CartContext';
-import ItemCount from '../ItemCount/ItemCount'
-import "./ItemDetail.css"
+import React from "react";
+import { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
+import ItemCount from "../ItemCount/ItemCount";
+import "./ItemDetail.css";
+import Img from '../../images/mediosPago.jpg'
 
-function ItemDetail({ producto }) {
-  const { cart, addToCart } = useCartContext()
-  const [cantidad, setCantidad] = useState()
+function ItemDetail({ product }) {
+  const { cart, addToCart } = useCartContext();
+  const [quantity, setQuantity] = useState();
 
-  function onAdd(cantidad) {
-    setCantidad(cantidad);
-    addToCart({ producto, cantidad })
+  function onAdd(quantity) {
+    setQuantity(quantity);
+    addToCart({ product, quantity });
   }
 
   return (
     <>
-      <div className="container-fluid mt-3">
-        <div className="row justify-content-center">
-          <div className="col-md-12">
-            <div className="row mb-3 ">
-              <div className="col-md-5 text-center">
-                <img src={producto.foto} className="img-fluid mb-3" alt="" />
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col className="img-prod">
+            <img src={product.photo} className="img-fluid mb-3" alt="" />
+          </Col>
+          <Col>
+            <div className="col-md-7 mt-2">
+              <h1 className="h4 d-inline me-2 text-uppercase">
+                {" "}
+                {product.name}
+              </h1>
+              <span className="badge bg-success me-2">
+                {product.category}
+              </span>
+              <div className="row small mb-3 mt-2">
+                <span className="col-sm-2">Stock</span>
+                <span className="col-sm-10">{product.stock}</span>
+                <span className="col-sm-2">Color</span>
+                <div className="col-sm-10">
+                  <button className="btn btn-sm btn-danger p-2 me-2"></button>
+                  <button className="btn btn-sm btn-primary p-2 me-2"></button>
+                </div>
               </div>
-              <div className="col-md-7 mt-2">
-                <h1 className="h4 d-inline me-2 text-uppercase"> {producto.nombre}</h1>
-                <span className="badge bg-success me-2">{producto.categoria}</span>
-                <span className="badge bg-danger me-2">{producto.tipo}</span>
-                <div className="row small mb-3 mt-2" >
-                  <span className="col-sm-2">Stock</span>
-                  <span className="col-sm-10">{producto.stock}</span>
-                  <span className="col-sm-2">Color</span>
-                  <div className="col-sm-10">
-                    <button className="btn btn-sm btn-danger p-2 me-2"></button>
-                    <button className="btn btn-sm btn-primary p-2 me-2"></button>
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <span className="fw-bold h5 me-2">${producto.precio}</span>
-                  <del className="small me-2">${(producto.precio * 20 / 100) + parseInt(producto.precio)}</del>
-                  <span className="rounded p-1 bg-warning  me-2 small">-20%</span>
-                </div>
-                {
-                  cantidad
-                    ?
-                    <div>
-                      <Link to='/cart'>
-                        <button className="btn btn-success btn-space">Terminar mi compra</button>
-                      </Link>
-                      <Link to='/'>
-                        <button className="btn btn-success btn-space">Seguir comprando</button>
-                      </Link>
-                    </div>
-                    :
-                    <ItemCount stock={producto.stock} initial={1} onAdd={onAdd} />
-                }
+              <div className="mb-3">
+                <span className="fw-bold h5 me-2">${product.price}</span>
+                <del className="small me-2">
+                  ${(product.price * 20) / 100 + parseInt(product.price)}
+                </del>
+                <span className="rounded p-1 bg-warning  me-2 small">-20%</span>
+              </div>
+              <div className="m-left-none m-bottom-quarter">
+                    <span className="payment">
+                      <img src={Img} style={{ width: '150px', height: '30px', marginBottom:"10px" }} />
+                    </span>
+              </div>
+
+              {quantity ? (
                 <div>
-                  <p className="mb-2 small">{producto.descripcionLarga}</p>
+                  <Link to="/cart">
+                    <button className="btn btn-success btn-space">
+                      Terminar mi compra
+                    </button>
+                  </Link>
+                  <Link to="/">
+                    <button className="btn btn-success btn-space">
+                      Seguir comprando
+                    </button>
+                  </Link>
                 </div>
+              ) : (
+                <ItemCount stock={product.stock} initial={1} onAdd={onAdd} />
+              )}
+              <div>
+                <p className="mb-2 small">{product.largeDescription}</p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </>
-
-  )
+  );
 }
 
-export default ItemDetail
+export default ItemDetail;

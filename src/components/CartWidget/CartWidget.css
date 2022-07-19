@@ -1,4 +1,4 @@
-.carrito {
+.iconCart {
     border-radius: 50%;
     background: #ab82ff;
     color: #FFFFFF;
@@ -11,7 +11,7 @@
     text-align: center;
 }
 
-.resumenCompra {
+.summary {
     position: relative;
     min-width: 60px;
     text-align: center;

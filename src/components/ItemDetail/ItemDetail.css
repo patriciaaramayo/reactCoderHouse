@@ -2,10 +2,18 @@
     text-align: left;
 }
 
-.txt_nombre {
-    font-size: 1.25rem;
-}
-
 .btn-space {
     margin-right: 5px;
+}
+
+.img-prod {
+    text-align: center;
+}
+
+.payment{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
 }

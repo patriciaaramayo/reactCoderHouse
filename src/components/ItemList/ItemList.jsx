@@ -3,19 +3,19 @@ import Item from '../Item/Item';
 import { Link } from 'react-router-dom'
 import './ItemList.css'
 
-function ItemList({ productos }) {
+function ItemList({ products }) {
     return (
         <>
-            {productos.length > 0 ?
-                productos.map((producto) =>
-                    <Item key={producto.id} producto={producto} />
+            {products.length > 0 ?
+                products.map((product) =>
+                    <Item key={product.id} product={product} />
                 )
                 :
                 <div>
-                    <div className='mensaje'>
+                    <div className='message'>
                         <h4>No se encontraron productos</h4>
                     </div>
-                    <div className='mensaje'>
+                    <div className='message'>
                         <Link to='/'>
                             <button className="btn btn-success btn-space">Ver Productos disponibles</button>
                         </Link>

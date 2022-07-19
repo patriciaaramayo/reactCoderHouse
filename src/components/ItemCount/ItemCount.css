@@ -11,14 +11,14 @@
   font-size: 1rem;
 }
 
-.btn_agregarCarrito {
+.btn_addCart {
   margin-left: 0px;
 }
 
-.contenedor_counter {
+.counter-container {
   margin-left: 10px;
 }
 
-.contenedor_btnCarrito {
+.btnCart-container {
   margin-bottom: 10px;
 }

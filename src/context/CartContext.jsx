@@ -10,10 +10,10 @@ export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState([])
 
     const addToCart = (item) => {
-        let carritoprevio = [...cart];
-        if (IsInCart(item.producto.id)) {
-            carritoprevio.find((i) => i.item.producto.id === item.producto.id).item.cantidad += item.cantidad;
-            setCart(carritoprevio);
+        let previousCart = [...cart];
+        if (IsInCart(item.product.id)) {
+            previousCart.find((i) => i.item.product.id === item.product.id).item.quantity += item.quantity;
+            setCart(previousCart);
         }
         else {
             setCart([...cart, { item }])
@@ -21,23 +21,23 @@ export const CartContextProvider = ({ children }) => {
     }
 
     const IsInCart = (id) => {
-        return cart && cart.some((i) => i.item.producto.id === id)
+        return cart && cart.some((i) => i.item.product.id === id)
     }
 
     const EmptyCart = () => {
         setCart([])
     }
     const RemoveItem = (id) => {
-        const items = cart.filter((product) => product.item.producto.id !== id)
+        const items = cart.filter((product) => product.item.product.id !== id)
         setCart(items)
         return
     }
     const PriceTotal = () => {
-        return cart.reduce((acum, i) => acum + i.item.cantidad * i.item.producto.precio, 0)
+        return cart.reduce((acum, i) => acum + i.item.quantity * i.item.product.price, 0)
     }
 
     const IconCart = () => {
-        return cart.reduce((acum, i) => acum + i.item.cantidad, 0)
+        return cart.reduce((acum, i) => acum + i.item.quantity, 0)
     }
 
     return (

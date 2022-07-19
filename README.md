@@ -32,3 +32,17 @@ npm start
 | React-Bootstrap | v.2.4.0 |
 | React-Router-DOM | v.6.3.0 |
 | Firebase | v.9.8.4 |
+
+
+## Capturas
+
+- Listado de productos
+
+ ![image](https://drive.google.com/uc?export=view&id=1Qpzwb_ikegN6qUFzD5JJ5UOC12-_mJBs)
+ - Detalle  de producto
+ 
+  ![image](https://drive.google.com/uc?export=view&id=1m1kbOULv8gF73lyZhBg0ahTepopCYHkI)
+- Carrito
+
+   ![image](https://drive.google.com/uc?export=view&id=1z7aJHH087b9DZuwTEN5L1dPOJ4UroUPY)
+   
